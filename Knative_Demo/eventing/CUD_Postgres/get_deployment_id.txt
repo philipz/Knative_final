@@ -1,0 +1,2 @@
+kubectl get pods  -n knative-samples
+kubectl exec -it postgres-deployment-58cdc49bc9-zddbw -n knative-samples  -- /bin/sh

@@ -1,0 +1,87 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: cloudevents-player
+  namespace: knative-samples
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+    spec:
+      containers:
+        - image: quay.io/ruben/cloudevents-player:v1.3
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: cloudevents-player
+  namespace: knative-samples
+  annotations:
+    knative-eventing-injection: enabled
+spec:
+  broker: default
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: cloudevents-player
+      namespace: knative-samples
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: cud-postgres
+  namespace: knative-samples
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: dev.knative.samples.helloworld
+      source: dev.knative.samples/helloworldsource
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: cud-postgres
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: cud-redis
+  namespace: knative-samples
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: dev.knative.samples.helloworld
+      source: dev.knative.samples/helloworldsource
+  subscriber:
+    ref:
+      apiVersion: v1
+      kind: Service
+      name: cud-redis
+---
+apiVersion: sources.knative.dev/v1
+kind: SinkBinding
+metadata:
+  name: ce-player-binding
+  namespace: knative-samples
+spec:
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+      name: default
+      namespace: knative-samples
+  subject:
+    apiVersion: serving.knative.dev/v1
+    kind: Service
+    name: cloudevents-player
+    namespace: knative-samples
+---
+apiVersion: eventing.knative.dev/v1
+kind: Broker
+metadata:
+  name: default
+  namespace: knative-samples

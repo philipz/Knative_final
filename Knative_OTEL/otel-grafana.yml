@@ -1,0 +1,71 @@
+receivers:
+  otlp:
+    protocols:
+      http:
+      grpc:
+
+extensions:
+  basicauth/otlp:
+    client_auth:
+      username: 164149
+      password: "eyJrIjoiOGU2YjViNzQ3ZGFjY2I0MjA3MzEzMmZhNDI0NDU1MzU0YjAwZjVhZSIsIm4iOiJvdGVsIiwiaWQiOjQ1NTQ4M30="
+  basicauth/traces:
+    client_auth:
+      username: "8629"
+      password: "eyJrIjoiOGU2YjViNzQ3ZGFjY2I0MjA3MzEzMmZhNDI0NDU1MzU0YjAwZjVhZSIsIm4iOiJvdGVsIiwiaWQiOjQ1NTQ4M30="
+  basicauth/metrics:
+    client_auth:
+      username: "26256"
+      password: "eyJrIjoiOGU2YjViNzQ3ZGFjY2I0MjA3MzEzMmZhNDI0NDU1MzU0YjAwZjVhZSIsIm4iOiJvdGVsIiwiaWQiOjQ1NTQ4M30="
+  basicauth/logs:
+    client_auth:
+      username: "12109"
+      password: "eyJrIjoiOGU2YjViNzQ3ZGFjY2I0MjA3MzEzMmZhNDI0NDU1MzU0YjAwZjVhZSIsIm4iOiJvdGVsIiwiaWQiOjQ1NTQ4M30="   
+
+exporters:
+  otlp:
+    endpoint: tempo-us-central1.grafana.net:443
+    tls:
+      insecure: false
+    auth:
+      authenticator: basicauth/traces
+
+  prometheusremotewrite:
+    endpoint: https://prometheus-us-central1.grafana.net/api/prom/push
+    auth:
+      authenticator: basicauth/metrics
+
+  loki:
+    endpoint: https://logs-prod-us-central1.grafana.net/loki/api/v1/push
+    auth:
+      authenticator: basicauth/logs
+  logging:
+    loglevel: debug
+
+processors:
+  spanmetrics:
+    metrics_exporter: prometheusremotewrite
+  resource:
+    attributes:
+      - action: insert
+        key: service_name
+        from_attribute: service.name 
+      - action: insert
+        key: loki.resource.labels
+        value: service_name
+
+service:
+  extensions: [basicauth/otlp, basicauth/traces, basicauth/metrics, basicauth/logs]
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors: []
+      exporters: [otlp]
+    metrics:
+      receivers: [otlp]
+      processors: []
+      exporters: [prometheusremotewrite]
+    logs:
+      receivers: [otlp]
+      processors: [resource]
+      exporters: [loki]
