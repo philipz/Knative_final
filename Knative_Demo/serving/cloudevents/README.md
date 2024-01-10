@@ -29,19 +29,6 @@ the broker.
 It supports both [Structured](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/http-protocol-binding.md#32-structured-content-mode)
 and [Binary](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/http-protocol-binding.md#31-binary-content-mode) content mode.
 
-The application has a web interface in which you can define the events you want to send to the broker:
-
-![create event](docs/images/create_event.png)
-
-On the right-hand side all the emitted and received events will be listed. In the image below there are two received 
-and one emitted event.
-
-![activity](docs/images/activity.png)
-
-And you will also be able to display the payload of the event.
-
-![event](docs/images/event.png)
-
 ## Running the container image
 
 You can expect to have built container images in `arm64` and `amd64` architectures in `quay.io/ruben/cloudevents-player:v1.3`
