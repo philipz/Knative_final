@@ -44,6 +44,8 @@ For [Knative serving](./Knative_Demo/serving/): After deploying the eventing com
 
 ## Knative with OpenTelemetry
 
-
+##CloudEvents player input 
+event source,type : check in "Knative_Demo/eventing/CUD_Redis/app.yaml" attribute:type,source.
+Message: check in -d in "Knative_Demo/eventing/CUD_Redis/input.txt" and "Knative_Demo/eventing/CUD_Postgres/input.txt"
 
 
