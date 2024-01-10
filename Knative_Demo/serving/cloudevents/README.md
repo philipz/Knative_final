@@ -8,11 +8,7 @@
 - [Running the binary](#running-the-binary)
 - [Running on Kubernetes](#running-on-kubernetes)
   * [Requirements](#requirements)
-  * [Create the broker](#create-the-broker)
-  * [Create the Knative Service](#create-the-knative-service)
-  * [Bind the service with the broker](#bind-the-service-with-the-broker)
-  * [Create the Knative trigger](#create-the-knative-trigger)
-  * [Manual deployment](#manual-deployment)
+  * [Use .yaml file to deply application](#Use-yaml-file-to-deply-application)
 - [Build](#build)
   * [JVM Build](#jvm-build)
   * [Quarkus dev mode](#quarkus-dev-mode)
@@ -78,7 +74,12 @@ PLAYER_MODE=LOCAL ./target/cloudevents-player-1.3-SNAPSHOT-runner
 - Knative eventing
 - `kubectl`
 - `kn`
-
+- `eventing`
+### Use .yaml file to deply application
+- After apply eventing just go to the deploy folder and run with follwing command.
+```bash
+kubectl apply -f knative.yaml
+```
 
 ## Build
 
