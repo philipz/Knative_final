@@ -35,7 +35,7 @@ spec:
     spec:
       containers:
         - name: cud-postgres
-          image: philipz/cud-postgres:latest
+          image: docker.io/philipz/cud-postgres:latest
           imagePullPolicy: Always
 ---
 # Service that exposes helloworld-python app.

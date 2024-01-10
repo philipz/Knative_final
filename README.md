@@ -44,11 +44,16 @@ For [Knative serving](./Knative_Demo/serving/): After deploying the eventing com
 
 ## Knative with OpenTelemetry
 
-## CloudEvents player input 
-* Event Source: dev.knative.samples.helloworld 'please see in file Knative_Demo/eventing/CUD_Postgres/app.yaml arrtribute: source'
-* Event Type : dev.knative.samples/helloworldsource 'please see in file Knative_Demo/eventing/CUD_Postgres/app.yaml arrtribute: type'
-* Message: Create:{"cmd":"POST","key":1,"value":{"id":"1","name":"redis","price":"2000"}}
-* Message: Change:{"cmd":"PUT","key":1,"value":{"id":"1","name":"python","price":"1500"}}
-* Message: Delete:{"cmd":"DELETE","key":1,"value":{"id":"1"}}
+## CloudEvents player input
 
+* Event ID: click the auto-generator button.
+* Event Type: dev.knative.samples/helloworldsource, please see the type arrtribute in the file, *Knative_Demo/eventing/CUD_Postgres/app.yaml*.
+* Event Subject(optional): POST/PUT/DELETE
+* Event Source: dev.knative.samples.helloworld, please see the source arrtribute in the file, *Knative_Demo/eventing/CUD_Postgres/app.yaml*.
+* Specversion: 1.0
+* Message:
+  1. Create: `{"cmd":"POST","key":1,"value":{"id":"1","name":"redis","price":"2000"}}`
+  2. Change: `{"cmd":"PUT","key":1,"value":{"id":"1","name":"python","price":"1500"}}`
+  3. Delete: `{"cmd":"DELETE","key":1,"value":{"id":"1"}}`
 
+![](cloudevents-player.png)

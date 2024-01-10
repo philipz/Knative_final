@@ -3,6 +3,6 @@ CREATE TABLE obj (
     name VARCHAR(255) NOT NULL,
     price VARCHAR(255) NOT NULL
 );
-test if it can insert
+--test if it can insert
 INSERT INTO obj (id, name, price)
 VALUES ('1', 'Doe', '50000');

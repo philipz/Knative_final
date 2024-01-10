@@ -1,7 +1,5 @@
 # Use Knative Eventing to Create, Update, or Delete the PostgreSQL Database.
 
-A simple web app written in Python that you can use to test knative eventing. It shows how to consume a CloudEvent in Knative eventing, and optionally how to respond back with another CloudEvent in the http response, by adding the Cloud Eventing headers outlined in the Cloud Events standard definition.
-
 ## Prerequisite
 
 * Python 3.7.9
