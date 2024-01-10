@@ -45,8 +45,8 @@ For [Knative serving](./Knative_Demo/serving/): After deploying the eventing com
 ## Knative with OpenTelemetry
 
 ## CloudEvents player input 
-Event Source: dev.knative.samples.helloworld\n
-Event Type : dev.knative.samples/helloworldsource\n
-Message: 1.Create:{"cmd":"POST","key":1,"value":{"id":"1","name":"redis","price":"2000"}},2.Change:{"cmd":"PUT","key":1,"value":{"id":"1","name":"python","price":"1500"}},3.Delete:{"cmd":"DELETE","key":1,"value":{"id":"1"}}
+* Event Source: dev.knative.samples.helloworld
+* Event Type : dev.knative.samples/helloworldsource
+* Message: 1.Create:{"cmd":"POST","key":1,"value":{"id":"1","name":"redis","price":"2000"}},2.Change:{"cmd":"PUT","key":1,"value":{"id":"1","name":"python","price":"1500"}},3.Delete:{"cmd":"DELETE","key":1,"value":{"id":"1"}}
 
 
