@@ -1,6 +1,6 @@
 {
-  "short_name": "CloudEvents Player",
-  "name": "CloudEvents Player",
+  "short_name": "CloudEvents Player WIth CUD",
+  "name": "CloudEvents Player WIth CUD",
   "icons": [
     {
       "src": "favicon.ico",
