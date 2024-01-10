@@ -45,7 +45,8 @@ For [Knative serving](./Knative_Demo/serving/): After deploying the eventing com
 ## Knative with OpenTelemetry
 
 ## CloudEvents player input 
-event source,type : check in "Knative_Demo/eventing/CUD_Redis/app.yaml" attribute:type,source.
-Message: check in -d in "Knative_Demo/eventing/CUD_Redis/input.txt" and "Knative_Demo/eventing/CUD_Postgres/input.txt"
+Event Source: dev.knative.samples.helloworld
+Event Type : dev.knative.samples/helloworldsource
+Message: 1.Create:{"cmd":"POST","key":1,"value":{"id":"1","name":"redis","price":"2000"}},2.Change:{"cmd":"PUT","key":1,"value":{"id":"1","name":"python","price":"1500"}},3.Delete:{"cmd":"DELETE","key":1,"value":{"id":"1"}}
 
 
