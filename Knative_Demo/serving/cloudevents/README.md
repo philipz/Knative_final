@@ -84,16 +84,14 @@ PLAYER_MODE=LOCAL ./target/cloudevents-player-1.3-SNAPSHOT-runner
 Let's use the `kn` CLI to create an InMemoryChannel-backed Broker.
 
 ```bash
-$ kn broker create example-broker
+$ kn broker create default -n knative-samples
 Broker 'example-broker' successfully created in namespace 'eventing-demo'.
 ```
 
 Let's confirm the Broker is created and ready.
 
 ```bash
-$ kn broker list                 
-NAME             URL                                                                                AGE   CONDITIONS   READY   REASON
-example-broker   http://broker-ingress.knative-eventing.svc.cluster.local/eventing-demo/example-broker   20s   6 OK / 6     True   
+$ kn broker -n knative-samples list                
 ```
 
 ### Create the Knative Service
@@ -101,19 +99,11 @@ example-broker   http://broker-ingress.knative-eventing.svc.cluster.local/eventi
 If you have the `kn` cli available you can just create the broker with the CLI
 
 ```bash
-$ kn service create cloudevents-player \
+$ kn service create -n knative-samples cloudevents-player \
 --image quay.io/ruben/cloudevents-player:latest
 
-Creating service 'cloudevents-player' in namespace 'eventing-demo':
+Creating service 'cloudevents-player' in namespace 'knative-samples':
 
-  0.224s Configuration "cloudevents-player" is waiting for a Revision to become ready.
-  6.043s ...
-  6.044s Ingress has not yet been reconciled.
-  6.045s Waiting for load balancer to be ready
-  6.248s Ready to serve.
-
-Service 'cloudevents-player' created to latest revision 'cloudevents-player-00001' is available at URL:
-https://cloudevents-player-eventing-demo.apps.example.com
 ```
 
 ### Bind the service with the broker
